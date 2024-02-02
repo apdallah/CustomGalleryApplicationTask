@@ -15,8 +15,6 @@ object PermissionHelper {
 
 
     fun checkStoragePermissions(context: Context): Boolean {
-
-
        return  ContextCompat.checkSelfPermission(context, getReadPermission()) == PackageManager.PERMISSION_GRANTED
     }
     fun requestForStoragePermissions(context: Activity) {
@@ -28,7 +26,7 @@ object PermissionHelper {
         )
     }
      private fun getReadPermission():String{
-         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
              //Android is 11 (R) or above
              Manifest.permission.READ_MEDIA_IMAGES
          } else {

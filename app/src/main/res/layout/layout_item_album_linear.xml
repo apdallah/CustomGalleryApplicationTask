@@ -2,9 +2,9 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="120dp"
-    android:layout_height="120dp"
-    app:cardCornerRadius="1dp"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+     app:cardCornerRadius="1dp"
     android:layout_margin="8dp"
     app:cardElevation="1dp">
 
@@ -14,23 +14,28 @@
 
         <ImageView
             android:id="@+id/thumbinalImageView"
-            android:layout_width="match_parent"
+            android:layout_width="72dp"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
+             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_background" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#1D474747"
+            android:layout_width="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="match_parent"
+
+            app:layout_constraintStart_toEndOf="@id/thumbinalImageView"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
                 android:id="@+id/albumIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_alignParentStart="true"
+                android:layout_marginEnd="8dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_grid" />
 
             <TextView
@@ -38,28 +43,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/albumCountTv"
-                android:layout_toEndOf="@id/albumIcon"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:textSize="11sp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textSize="15sp"
                 android:textAlignment="viewStart"
+                android:layout_toStartOf="@id/albumIcon"
+                android:layout_alignParentStart="true"
                 android:textAppearance="@android:style/TextAppearance.Small"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 tools:text="Default  " />
 
             <TextView
                 android:id="@+id/albumCountTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+
                 android:layout_centerVertical="true"
-                android:textAlignment="center"
-                android:textSize="11sp"
-                android:layout_marginEnd="2dp"
-                android:textColor="@color/white"
+                android:textAlignment="viewStart"
+                android:textSize="12sp"
+                android:layout_below="@id/albumTitleTv"
+                android:layout_marginStart="8dp"
+                 android:textColor="#787575"
                 tools:text="20 " />
 
         </RelativeLayout>
