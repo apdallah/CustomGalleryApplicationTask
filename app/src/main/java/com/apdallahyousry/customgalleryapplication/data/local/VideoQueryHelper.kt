@@ -27,6 +27,6 @@ class VideoQueryHelper @Inject constructor(@ApplicationContext context: Context)
         val title: String = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DISPLAY_NAME))
         val albumTitle: String = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.BUCKET_DISPLAY_NAME))
 
-        return MediaItemModel(id=id, title = title, mediaPath = imagePath, albumName = albumTitle, mediaType = MediaType.MEDIA_TYPE_IMAGE)
+        return MediaItemModel(id=id, title = title, mediaPath = imagePath, albumName = albumTitle, mediaType = MediaType.MEDIA_TYPE_VIDEO)
     }
 }
