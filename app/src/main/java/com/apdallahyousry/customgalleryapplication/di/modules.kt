@@ -1,6 +1,6 @@
 package com.apdallahyousry.customgalleryapplication.di
 
-import com.apdallahyousry.customgalleryapplication.data.repo.AlbumsRepository
+import com.apdallahyousry.customgalleryapplication.data.repo.MediaRepository
 import com.apdallahyousry.customgalleryapplication.data.repo.LocaleAlbumRepository
 import dagger.Binds
 import dagger.Module
@@ -11,5 +11,5 @@ import dagger.hilt.android.components.ViewModelComponent
 @InstallIn(ViewModelComponent::class)
 interface RepositoryModules {
     @Binds
-    fun provideMainRepositoryImpl(repository: LocaleAlbumRepository): AlbumsRepository
+    fun provideMainRepositoryImpl(repository: LocaleAlbumRepository): MediaRepository
 }
