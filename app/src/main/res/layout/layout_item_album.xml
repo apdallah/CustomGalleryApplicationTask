@@ -23,15 +23,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#1D474747"
+            android:background="#86504F4F"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
                 android:id="@+id/albumIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_margin="4dp"
+                app:tint="@color/white"
                 android:layout_alignParentStart="true"
-                android:src="@drawable/ic_grid" />
+                android:src="@drawable/ic_folder" />
 
             <TextView
                 android:id="@+id/albumTitleTv"
@@ -58,7 +60,7 @@
                 android:layout_centerVertical="true"
                 android:textAlignment="center"
                 android:textSize="11sp"
-                android:layout_marginEnd="2dp"
+                android:layout_marginEnd="4dp"
                 android:textColor="@color/white"
                 tools:text="20 " />
 

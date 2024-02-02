@@ -94,12 +94,17 @@ class AlbumsAdapter(
                 onItemClicked.invoke(item)
             }
             item.thumbnail?.let {
-                Glide.with(binding.root.context).load(File(it)).
+                Glide.with(binding.root.context).load(it).
                 error(R.drawable.ic_launcher_background)
                     .centerCrop().placeholder(R.drawable.ic_launcher_background)
                     .into(binding.thumbinalImageView)
 
             }
+            val drawable=if (item.title.equals("All Images",true))R.drawable.ic_all_images
+            else if(item.title.equals("camera",true))R.drawable.ic_camera
+            else R.drawable.ic_folder
+                Glide.with(binding.root.context).load(drawable).into(binding.albumIcon)
+
         }
     }
 
@@ -112,13 +117,17 @@ class AlbumsAdapter(
                 onItemClicked.invoke(item)
             }
             item.thumbnail?.let {
-                Glide.with(binding.root.context).load(File(it)).
+                Glide.with(binding.root.context).load(it).
                     error(R.drawable.ic_launcher_background)
                     .centerCrop().placeholder(R.drawable.ic_launcher_background)
                     .into(binding.thumbinalImageView)
 
 
             }
+            val drawable=if (item.title.equals("All Images",true))R.drawable.ic_all_images
+            else if(item.title.equals("camera",true))R.drawable.ic_camera
+            else R.drawable.ic_folder
+            Glide.with(binding.root.context).load(drawable).into(binding.albumIcon)
         }
     }
 }

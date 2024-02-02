@@ -66,7 +66,7 @@ class MediaItemsAdapter(
         fun bindData(item: MediaItemModel) {
              binding.albumTitleTv.text = item.title
             item.mediaPath?.let {
-                Glide.with(binding.root.context).load(File(it)).
+                Glide.with(binding.root.context).load(it).
                 error(R.drawable.ic_launcher_background)
                     .centerCrop()
                     .placeholder(R.drawable.ic_launcher_background)

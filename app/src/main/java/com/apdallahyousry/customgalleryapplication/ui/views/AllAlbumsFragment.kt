@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.apdallahyousry.customgalleryapplication.R
 import com.apdallahyousry.customgalleryapplication.data.models.AlbumModel
 import com.apdallahyousry.customgalleryapplication.databinding.LayoutFragmentAllAlbumsBinding
-import com.apdallahyousry.customgalleryapplication.ui.adapters.AlbumsAdapter
+ import com.apdallahyousry.customgalleryapplication.ui.adapters.AlbumsAdapter
 import com.apdallahyousry.customgalleryapplication.ui.viewmodels.AlbumsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -60,10 +60,11 @@ class AllAlbumsFragment : Fragment() {
 
                     if (isGrid){
                         (binding.albumsRv.layoutManager as GridLayoutManager).spanCount=1
-                        it.setIcon(R.drawable.ic_linear)
-                    }else{
-                        (binding.albumsRv.layoutManager as GridLayoutManager).spanCount=3
                         it.setIcon(R.drawable.ic_grid)
+                    }else{
+                        val itemPixles=120*(resources.displayMetrics.densityDpi/160)
+                        (binding.albumsRv.layoutManager as GridLayoutManager).spanCount=resources.displayMetrics.widthPixels/itemPixles
+                        it.setIcon(R.drawable.ic_linear)
 
                     }
                     adapter?.switchLayoutManager(isGrid)
@@ -75,13 +76,15 @@ class AllAlbumsFragment : Fragment() {
 
     }
 
+
     private fun bindRecyclerData(data: List<AlbumModel>) {
        adapter = AlbumsAdapter(data) {
             viewModel.onAlbumSelected(it)
            findNavController().navigate(R.id.action_allAlbumsFragment_to_albumDetailsFragment)
         }
         binding.albumsRv.adapter = adapter
-        binding.albumsRv.layoutManager = GridLayoutManager(requireContext(), 3)
+        val itemPixles=120*(resources.displayMetrics.densityDpi/160)
+        binding.albumsRv.layoutManager = GridLayoutManager(requireContext(), resources.displayMetrics.widthPixels/itemPixles)
 
     }
 

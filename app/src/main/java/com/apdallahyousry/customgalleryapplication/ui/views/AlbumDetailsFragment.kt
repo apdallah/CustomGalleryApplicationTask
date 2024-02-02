@@ -51,7 +51,8 @@ class AlbumDetailsFragment : Fragment() {
         binding.topToolBar.title=data.title
        val adapter = MediaItemsAdapter(data.mediaItems)
         binding.mediaRv.adapter = adapter
-        binding.mediaRv.layoutManager = GridLayoutManager(requireContext(), 3)
+        val itemPixles=120*(resources.displayMetrics.densityDpi/160).toInt()
+        binding.mediaRv.layoutManager = GridLayoutManager(requireContext(), resources.displayMetrics.widthPixels/itemPixles)
 
     }
 

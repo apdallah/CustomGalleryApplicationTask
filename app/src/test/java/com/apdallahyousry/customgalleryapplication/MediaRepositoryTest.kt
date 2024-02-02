@@ -60,7 +60,8 @@ class MediaRepositoryTest {
         val result = mediaRepository.readMedia()
         // Assert
         // Verify that the result is the combination of mocked image and video lists
-        assert( result.toList().flatten().size== 3)
+        //total size should be 4(All Images,pictures,videos,trip)
+        assert( result.toList().flatten().size== 4)
 
 
     }
