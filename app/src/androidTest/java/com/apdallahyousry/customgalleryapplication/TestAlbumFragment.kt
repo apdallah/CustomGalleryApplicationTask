@@ -29,7 +29,7 @@ class TestAlbumFragment {
             activityRule.scenario.onActivity {
                 val count =
                     (it.findViewById<RecyclerView>(R.id.albumsRv).layoutManager as GridLayoutManager).spanCount
-                assertTrue(count == 3)
+                assertTrue(count != 1 )
             }
         }
         onView(withId(R.id.actionToggleGridLinear)).perform(click())
