@@ -5,6 +5,7 @@ import com.apdallahyousry.customgalleryapplication.data.local.ImageQueryHelper
 import com.apdallahyousry.customgalleryapplication.data.local.MediaQueryHelper
 import com.apdallahyousry.customgalleryapplication.data.local.VideoQueryHelper
 import com.apdallahyousry.customgalleryapplication.data.models.MediaItemModel
+import com.apdallahyousry.customgalleryapplication.data.models.MediaMapper
 import com.apdallahyousry.customgalleryapplication.data.models.MediaType
 import com.apdallahyousry.customgalleryapplication.data.repo.LocaleAlbumRepository
 import com.apdallahyousry.customgalleryapplication.data.repo.MediaRepository
@@ -29,6 +30,7 @@ class MediaRepositoryTest {
 
     @Mock
     lateinit var videoQueryHelper: VideoQueryHelper
+
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
@@ -42,13 +44,13 @@ class MediaRepositoryTest {
         MockitoAnnotations.initMocks(this)
 
         // Create an instance of the repository with mocked dependencies
-        mediaRepository = LocaleAlbumRepository(imageQueryHelper, videoQueryHelper)
+        mediaRepository = LocaleAlbumRepository(imageQueryHelper, videoQueryHelper, MediaMapper())
     }
     @Test
       fun `getAllMedia should return combined list of images and videos`() = runTest{
         // Arrange
-        val mockImageList = listOf(MediaItemModel(1, "title", "pictures","",MediaType.MEDIA_TYPE_IMAGE))
-        val mockVideoList = listOf(MediaItemModel(2, "title", "pictures","",MediaType.MEDIA_TYPE_VIDEO))
+        val mockImageList = listOf(MediaItemModel(1, "title", "pictures","",MediaType.MEDIA_TYPE_IMAGE),MediaItemModel(1, "title", "trip","",MediaType.MEDIA_TYPE_IMAGE))
+        val mockVideoList = listOf(MediaItemModel(2, "title", "videos","",MediaType.MEDIA_TYPE_VIDEO))
         // Mock the behavior of queryMedia for image and video helpers
         Mockito.`when`(imageQueryHelper.queryMedia()).thenReturn(flowOf( mockImageList))
         Mockito.`when`(videoQueryHelper.queryMedia()).thenReturn(flowOf( mockVideoList))
@@ -58,7 +60,7 @@ class MediaRepositoryTest {
         val result = mediaRepository.readMedia()
         // Assert
         // Verify that the result is the combination of mocked image and video lists
-        assert( result.toList().flatten().size== mockImageList.size + mockVideoList.size)
+        assert( result.toList().flatten().size== 3)
 
 
     }

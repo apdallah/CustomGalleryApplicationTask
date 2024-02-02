@@ -30,9 +30,7 @@ class AlbumsViewModel @Inject constructor(private val repository: MediaRepositor
 
                 }.catch {
 
-                }.map {
-                    mapper.fromMediaItemsToAlbums(it)
-                }.collect {
+                } .collect {
                     _allAlbums.postValue(it)
                 }
         }

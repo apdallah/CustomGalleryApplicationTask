@@ -6,7 +6,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@ViewModelScoped
+
 class MediaMapper @Inject constructor() {
     fun fromMediaItemsToAlbums(mediaItems:List<MediaItemModel>):List<AlbumModel>{
         return mediaItems.groupBy {
