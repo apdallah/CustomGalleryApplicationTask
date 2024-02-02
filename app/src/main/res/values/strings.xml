@@ -2,4 +2,5 @@
     <string name="app_name">Custom Gallery Application</string>
     <string name="permession_button_text">Allow Gallery To Access Storage </string>
     <string name="title_gallery">Gallery</string>
+    <string name="message_empty_data">Empty Data</string>
 </resources>

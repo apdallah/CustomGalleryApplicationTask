@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.Adapter
 import android.widget.GridLayout
 import android.widget.Toast
+import androidx.core.view.isEmpty
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.apdallahyousry.customgalleryapplication.R
@@ -42,6 +44,7 @@ class AllAlbumsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.albumsLiveData.observe(viewLifecycleOwner) {
+            binding.emptyLy.isVisible=it.isEmpty()
             bindRecyclerData(it)
         }
         viewModel.error.observe(viewLifecycleOwner){
@@ -75,6 +78,7 @@ class AllAlbumsFragment : Fragment() {
     private fun bindRecyclerData(data: List<AlbumModel>) {
        adapter = AlbumsAdapter(data) {
             viewModel.onAlbumSelected(it)
+           findNavController().navigate(R.id.action_allAlbumsFragment_to_albumDetailsFragment)
         }
         binding.albumsRv.adapter = adapter
         binding.albumsRv.layoutManager = GridLayoutManager(requireContext(), 3)

@@ -3,24 +3,39 @@ package com.apdallahyousry.customgalleryapplication.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.apdallahyousry.customgalleryapplication.R
 import com.apdallahyousry.customgalleryapplication.data.models.AlbumModel
+import com.apdallahyousry.customgalleryapplication.data.models.MediaItemModel
 import com.apdallahyousry.customgalleryapplication.databinding.LayoutItemAlbumBinding
 import com.apdallahyousry.customgalleryapplication.databinding.LayoutItemAlbumLinearBinding
 import com.apdallahyousry.customgalleryapplication.ui.viewmodels.AlbumsViewModel
-import com.squareup.picasso.Picasso
-import java.io.File
+import com.bumptech.glide.Glide
+ import java.io.File
 
 class AlbumsAdapter(
     private val albumsList: List<AlbumModel>,
     private val onItemClicked: (item: AlbumModel) -> Unit
-) : RecyclerView.Adapter<ViewHolder>() {
+) : ListAdapter<AlbumModel,ViewHolder>(AlbumDiffUtil) {
+    object AlbumDiffUtil : DiffUtil.ItemCallback<AlbumModel>() {
+        override fun areItemsTheSame(oldItem: AlbumModel, newItem: AlbumModel): Boolean {
+            //This is to check if the item its self is the same this will use the equality function of the object.
+            //Alternatively if you are using a database and have a id you can you that.
+            return oldItem == newItem
+        }
 
+        override fun areContentsTheSame(oldItem: AlbumModel, newItem: AlbumModel): Boolean {
+            //This Goes a bit deeper and checks to make sure the data of the object is the same.
+            return oldItem.title == newItem.title
+        }
+
+    }
     val GRID_VIEW_TYPE = 0
     val LINEAR_VIEW_TYPE = 1
     var displayViewType = GRID_VIEW_TYPE
@@ -79,8 +94,9 @@ class AlbumsAdapter(
                 onItemClicked.invoke(item)
             }
             item.thumbnail?.let {
-                Picasso.get().load(File(it)).error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_background).fit()
+                Glide.with(binding.root.context).load(File(it)).
+                error(R.drawable.ic_launcher_background)
+                    .centerCrop().placeholder(R.drawable.ic_launcher_background)
                     .into(binding.thumbinalImageView)
 
             }
@@ -96,9 +112,11 @@ class AlbumsAdapter(
                 onItemClicked.invoke(item)
             }
             item.thumbnail?.let {
-                Picasso.get().load(File(it)).error(R.drawable.ic_launcher_background)
-                    .placeholder(R.drawable.ic_launcher_background).fit()
+                Glide.with(binding.root.context).load(File(it)).
+                    error(R.drawable.ic_launcher_background)
+                    .centerCrop().placeholder(R.drawable.ic_launcher_background)
                     .into(binding.thumbinalImageView)
+
 
             }
         }

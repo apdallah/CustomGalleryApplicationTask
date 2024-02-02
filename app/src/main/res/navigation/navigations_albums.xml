@@ -6,5 +6,13 @@
     <fragment
         android:id="@+id/allAlbumsFragment"
         android:name="com.apdallahyousry.customgalleryapplication.ui.views.AllAlbumsFragment"
-        android:label="AllAlbumsFragment" />
+        android:label="AllAlbumsFragment" >
+        <action
+            android:id="@+id/action_allAlbumsFragment_to_albumDetailsFragment"
+            app:destination="@id/albumDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumDetailsFragment"
+        android:name="com.apdallahyousry.customgalleryapplication.ui.views.AlbumDetailsFragment"
+        android:label="AlbumDetailsFragment" />
 </navigation>
