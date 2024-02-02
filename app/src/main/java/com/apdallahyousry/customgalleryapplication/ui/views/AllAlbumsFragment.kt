@@ -5,10 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import com.apdallahyousry.customgalleryapplication.data.models.AlbumModel
 import com.apdallahyousry.customgalleryapplication.databinding.LayoutFragmentAllAlbumsBinding
+import com.apdallahyousry.customgalleryapplication.ui.adapters.AlbumsAdapter
 import com.apdallahyousry.customgalleryapplication.ui.viewmodels.AlbumsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,6 +23,7 @@ class AllAlbumsFragment:Fragment() {
         get() = _binding!!
 
     private val viewModel: AlbumsViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,11 +37,20 @@ class AllAlbumsFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.albumsLiveData.observe(viewLifecycleOwner){
-            Log.i(this::class.simpleName, "onViewCreated: ${it.size}")
+            bindRecyclerData(it)
         }
         binding.topToolBar
 
     }
+    private fun bindRecyclerData(data:List<AlbumModel>){
+        val adapter=AlbumsAdapter(data){
+
+        }
+        binding.albumsRv.adapter=adapter
+        binding.albumsRv.layoutManager=GridLayoutManager(requireContext(),3)
+
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding=null

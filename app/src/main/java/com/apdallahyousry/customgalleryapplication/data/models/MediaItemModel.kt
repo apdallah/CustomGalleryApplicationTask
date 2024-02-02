@@ -1,6 +1,6 @@
 package com.apdallahyousry.customgalleryapplication.data.models
 
-data class MediaItemModel(val id:Int,
+data class MediaItemModel(val id:Long,
                           val title:String,
                           val albumName:String?=null,
                           val mediaPath:String?=null,

@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         }else{
             onStoragePermissionGranted()
         }
+
     }
     private fun onStoragePermissionGranted(){
         viewModel.loadAlbums()
