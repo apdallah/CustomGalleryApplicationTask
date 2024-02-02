@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AlbumsViewModel @Inject constructor(private val repository: MediaRepository, private val mapper: MediaMapper) : ViewModel() {
+class AlbumsViewModel @Inject constructor(private val repository: MediaRepository) : ViewModel() {
     private val _allAlbums: MutableLiveData<List<AlbumModel>> = MutableLiveData()
     val albumsLiveData: LiveData<List<AlbumModel>> = _allAlbums
 
