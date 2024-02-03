@@ -21,6 +21,7 @@ import com.apdallahyousry.customgalleryapplication.databinding.LayoutFragmentAll
 import com.apdallahyousry.customgalleryapplication.ui.adapters.AlbumsAdapter
 import com.apdallahyousry.customgalleryapplication.ui.adapters.MediaItemsAdapter
 import com.apdallahyousry.customgalleryapplication.ui.viewmodels.AlbumsViewModel
+import com.apdallahyousry.customgalleryapplication.utils.SpaceItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,7 +52,9 @@ class AlbumDetailsFragment : Fragment() {
         binding.topToolBar.title=data.title
        val adapter = MediaItemsAdapter(data.mediaItems)
         binding.mediaRv.adapter = adapter
-        val itemPixles=120*(resources.displayMetrics.densityDpi/160).toInt()
+        binding.mediaRv.addItemDecoration( SpaceItemDecoration(8))
+
+        val itemPixles=130*(resources.displayMetrics.densityDpi/160).toInt()
         binding.mediaRv.layoutManager = GridLayoutManager(requireContext(), resources.displayMetrics.widthPixels/itemPixles)
 
     }

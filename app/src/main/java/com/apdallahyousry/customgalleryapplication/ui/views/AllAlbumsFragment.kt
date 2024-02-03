@@ -14,13 +14,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.apdallahyousry.customgalleryapplication.R
 import com.apdallahyousry.customgalleryapplication.data.models.AlbumModel
 import com.apdallahyousry.customgalleryapplication.databinding.LayoutFragmentAllAlbumsBinding
  import com.apdallahyousry.customgalleryapplication.ui.adapters.AlbumsAdapter
 import com.apdallahyousry.customgalleryapplication.ui.viewmodels.AlbumsViewModel
+import com.apdallahyousry.customgalleryapplication.utils.SpaceItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -62,7 +65,7 @@ class AllAlbumsFragment : Fragment() {
                         (binding.albumsRv.layoutManager as GridLayoutManager).spanCount=1
                         it.setIcon(R.drawable.ic_grid)
                     }else{
-                        val itemPixles=120*(resources.displayMetrics.densityDpi/160)
+                        val itemPixles=130*(resources.displayMetrics.densityDpi/160)
                         (binding.albumsRv.layoutManager as GridLayoutManager).spanCount=resources.displayMetrics.widthPixels/itemPixles
                         it.setIcon(R.drawable.ic_linear)
 
@@ -83,7 +86,8 @@ class AllAlbumsFragment : Fragment() {
            findNavController().navigate(R.id.action_allAlbumsFragment_to_albumDetailsFragment)
         }
         binding.albumsRv.adapter = adapter
-        val itemPixles=120*(resources.displayMetrics.densityDpi/160)
+        binding.albumsRv.addItemDecoration( SpaceItemDecoration(8))
+        val itemPixles=130*(resources.displayMetrics.densityDpi/160)
         binding.albumsRv.layoutManager = GridLayoutManager(requireContext(), resources.displayMetrics.widthPixels/itemPixles)
 
     }
