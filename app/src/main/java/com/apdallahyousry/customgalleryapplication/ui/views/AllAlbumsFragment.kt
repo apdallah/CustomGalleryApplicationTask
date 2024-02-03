@@ -1,29 +1,21 @@
 package com.apdallahyousry.customgalleryapplication.ui.views
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.GridLayout
 import android.widget.Toast
-import androidx.core.view.isEmpty
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.apdallahyousry.customgalleryapplication.R
 import com.apdallahyousry.customgalleryapplication.data.models.AlbumModel
 import com.apdallahyousry.customgalleryapplication.databinding.LayoutFragmentAllAlbumsBinding
  import com.apdallahyousry.customgalleryapplication.ui.adapters.AlbumsAdapter
 import com.apdallahyousry.customgalleryapplication.ui.viewmodels.AlbumsViewModel
-import com.apdallahyousry.customgalleryapplication.utils.SpaceItemDecoration
+import com.apdallahyousry.customgalleryapplication.utils.getDisplaySpanCount
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -65,8 +57,8 @@ class AllAlbumsFragment : Fragment() {
                         (binding.albumsRv.layoutManager as GridLayoutManager).spanCount=1
                         it.setIcon(R.drawable.ic_grid)
                     }else{
-                        val itemPixles=130*(resources.displayMetrics.densityDpi/160)
-                        (binding.albumsRv.layoutManager as GridLayoutManager).spanCount=resources.displayMetrics.widthPixels/itemPixles
+
+                        (binding.albumsRv.layoutManager as GridLayoutManager).spanCount=getDisplaySpanCount()
                         it.setIcon(R.drawable.ic_linear)
 
                     }
@@ -86,11 +78,11 @@ class AllAlbumsFragment : Fragment() {
            findNavController().navigate(R.id.action_allAlbumsFragment_to_albumDetailsFragment)
         }
         binding.albumsRv.adapter = adapter
-        binding.albumsRv.addItemDecoration( SpaceItemDecoration(8))
-        val itemPixles=130*(resources.displayMetrics.densityDpi/160)
-        binding.albumsRv.layoutManager = GridLayoutManager(requireContext(), resources.displayMetrics.widthPixels/itemPixles)
+        binding.albumsRv.layoutManager = GridLayoutManager(requireContext(), getDisplaySpanCount())
+
 
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

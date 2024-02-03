@@ -2,8 +2,8 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="120dp"
-    android:layout_height="120dp"
+    android:layout_width="110dp"
+    android:layout_height="110dp"
     app:cardCornerRadius="1dp"
     android:layout_margin="8dp"
     app:cardElevation="1dp">
@@ -28,9 +28,10 @@
 
             <ImageView
                 android:id="@+id/albumIcon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_margin="4dp"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="4dp"
+                android:layout_centerVertical="true"
                 app:tint="@color/white"
                 android:layout_alignParentStart="true"
                 android:src="@drawable/ic_folder" />
@@ -59,7 +60,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:textAlignment="center"
-                android:textSize="11sp"
+                android:textSize="10sp"
                 android:layout_marginEnd="4dp"
                 android:textColor="@color/white"
                 tools:text="20 " />
